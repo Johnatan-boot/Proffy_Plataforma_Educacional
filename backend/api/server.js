@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 
 // Caminho absoluto para views (baseado na raiz do projeto Vercel)
-const rootPath = path.join(process.cwd(), "src/views");
+const rootPath = path.join(__dirname, "..", "..", "src", "views");
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +38,12 @@ app.get("/give-classes", (req, res) => serveHTML(res, "give-classes.html"));
 app.post("/give-classes", (req, res) => {
   console.log("📨 Dados recebidos:", req.body);
   res.send("Formulário recebido com sucesso!");
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
 
 // Exporta como função serverless para Vercel
