@@ -2,7 +2,7 @@
   "name": "nlw_2ed",
   "version": "1.0.0",
   "description": "Plataforma de estudos online - Desenvolvida durante a Next Level Week oferecida pela Rocketseat",
-  "main": "index.js",
+  "main": "backend/api/server.js",
   "scripts": {
     "start": "nodemon src/server.js"
   },
