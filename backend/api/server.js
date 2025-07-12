@@ -1,50 +1,53 @@
-const path = require("path");
-const fs = require("fs");
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
-// Caminho absoluto para views (baseado na raiz do projeto Vercel)
+// Corrigindo o caminho para views
 const rootPath = path.join(__dirname, "..", "..", "src", "views");
 
-// Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Servir estáticos
+// Corrige os caminhos públicos
 app.use("/public", express.static(path.join(rootPath, "public")));
 app.use("/scripts", express.static(path.join(rootPath, "scripts")));
 app.use("/assets", express.static(path.join(rootPath, "assets")));
 
-// Função para servir HTML com Content-Type forçado
-function serveHTML(res, file) {
-  try {
-    const filePath = path.join(rootPath, file);
-    const html = fs.readFileSync(filePath, "utf8");
-    res.setHeader("Content-Type", "text/html");
-    res.status(200).send(html);
-  } catch (err) {
-    console.error("Erro ao carregar página:", file, err);
-    res.status(404).send("Página não encontrada");
-  }
-}
+// Rotas
+const fs = require("fs");
 
-// Rotas principais
-app.get("/", (req, res) => serveHTML(res, "index.html"));
-app.get("/study", (req, res) => serveHTML(res, "study.html"));
-app.get("/give-classes", (req, res) => serveHTML(res, "give-classes.html"));
+app.get("/", (req, res) => {
+  const file = path.join(rootPath, "index.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
 
-// POST para formulário
+app.get("/study", (req, res) => {
+  const file = path.join(rootPath, "study.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
+
+app.get("/give-classes", (req, res) => {
+  const file = path.join(rootPath, "give-classes.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
+
+// POST simulativo
 app.post("/give-classes", (req, res) => {
   console.log("📨 Dados recebidos:", req.body);
-  res.send("Formulário recebido com sucesso!");
+  res.send("Formulário enviado com sucesso!");
 });
 
-const PORT = process.env.PORT || 3000;
+// Se for rodar localmente (node server.js), escute a porta
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
-
-// Exporta como função serverless para Vercel
+// Exporta para Vercel como função serverless
 module.exports = (req, res) => app(req, res);
