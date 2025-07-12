@@ -4,7 +4,9 @@ const path = require("path");
 const app = express();
 
 // Corrigindo o caminho para views
-const rootPath = path.join(__dirname, "..", "..", "src", "views");
+//const rootPath = path.join(__dirname, "..", "..", "src", "views");
+const rootPath = path.join(process.cwd(), "src/views");
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
