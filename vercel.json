@@ -4,8 +4,6 @@
     { "src": "backend/api/server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/(public|scripts|assets)/(.*)", "dest": "/src/views/$1/$2" },
-    { "src": "/(study|give-classes)", "dest": "/backend/api/server.js" },
-    { "src": "/", "dest": "/backend/api/server.js" }
+    { "src": "/(.*)", "dest": "backend/api/server.js" }
   ]
 }
