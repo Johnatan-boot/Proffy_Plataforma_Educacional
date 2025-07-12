@@ -42,12 +42,12 @@ app.post("/give-classes", (req, res) => {
 });
 
 // Se for rodar localmente (node server.js), escute a porta
-if (require.main === module) {
+/*if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
   });
-}
+}*/
 
 // Exporta para Vercel como função serverless
 module.exports = (req, res) => app(req, res);
