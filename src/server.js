@@ -1,19 +1,46 @@
-const express = require("express")
-const server = express()
+// src/server.js
+const express = require("express");
+const path = require("path");
+const app = express();
 
-server.use(express.static("public"))
+app.use(express.static(path.join(__dirname, "../public")));
 
-server.get("/", (req, res) => {
-    return res.sendFile(__dirname + "/views/index.html")
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/index.html"));
+
+});
+
+app.get("/study", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/study.html"));
+});
+
+app.get("/give-classes", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/give-classes.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+
+
+/*const express = require("express")
+const path = require("path")
+const app = express()
+
+app.use(express.static(path.join(__dirname, "../public")))
+
+app.get("/", (req, res) => {
+    return res.sendFile(path.join(__dirname, "views/index.html"))
 })
 
-server.get("/study", (req, res) => {
-    return res.sendFile(__dirname + "/views/study.html")
+app.get("/study", (req, res) => {
+    return res.sendFile(path.join(__dirname, "views/study.html"))
 })
 
-server.get("/give-classes", (req, res) => {
-    return res.sendFile(__dirname + "/views/give-classes.html")
+app.get("/give-classes", (req, res) => {
+    return res.sendFile(path.join(__dirname, "views/give-classes.html"))
 })
 
-
-server.listen(5500, console.log("Server is running!"))
+module.exports = app*/
