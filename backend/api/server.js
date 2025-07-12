@@ -15,9 +15,25 @@ app.use("/scripts", express.static(path.join(rootPath, "scripts")));
 app.use("/assets", express.static(path.join(rootPath, "assets")));
 
 // Rotas
-app.get("/", (req, res) => res.sendFile(path.join(rootPath, "index.html")));
-app.get("/study", (req, res) => res.sendFile(path.join(rootPath, "study.html")));
-app.get("/give-classes", (req, res) => res.sendFile(path.join(rootPath, "give-classes.html")));
+const fs = require("fs");
+
+app.get("/", (req, res) => {
+  const file = path.join(rootPath, "index.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
+
+app.get("/study", (req, res) => {
+  const file = path.join(rootPath, "study.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
+
+app.get("/give-classes", (req, res) => {
+  const file = path.join(rootPath, "give-classes.html");
+  res.setHeader("Content-Type", "text/html");
+  res.send(fs.readFileSync(file, "utf8"));
+});
 
 // POST simulativo
 app.post("/give-classes", (req, res) => {
