@@ -1,45 +1,44 @@
-const express = require("express");
 const path = require("path");
+const fs = require("fs");
+const express = require("express");
 
 const app = express();
 
-// Corrige caminho para views e assets na Vercel
+// Caminho absoluto para views (baseado na raiz do projeto Vercel)
 const rootPath = path.join(process.cwd(), "src/views");
 
+// Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Corrige os caminhos públicos
+// Servir estáticos
 app.use("/public", express.static(path.join(rootPath, "public")));
 app.use("/scripts", express.static(path.join(rootPath, "scripts")));
 app.use("/assets", express.static(path.join(rootPath, "assets")));
 
-// Rotas
-const fs = require("fs");
+// Função para servir HTML com Content-Type forçado
+function serveHTML(res, file) {
+  try {
+    const filePath = path.join(rootPath, file);
+    const html = fs.readFileSync(filePath, "utf8");
+    res.setHeader("Content-Type", "text/html");
+    res.status(200).send(html);
+  } catch (err) {
+    console.error("Erro ao carregar página:", file, err);
+    res.status(404).send("Página não encontrada");
+  }
+}
 
-app.get("/", (req, res) => {
-  const file = path.join(rootPath, "index.html");
-  res.setHeader("Content-Type", "text/html");
-  res.send(fs.readFileSync(file, "utf8"));
-});
+// Rotas principais
+app.get("/", (req, res) => serveHTML(res, "index.html"));
+app.get("/study", (req, res) => serveHTML(res, "study.html"));
+app.get("/give-classes", (req, res) => serveHTML(res, "give-classes.html"));
 
-app.get("/study", (req, res) => {
-  const file = path.join(rootPath, "study.html");
-  res.setHeader("Content-Type", "text/html");
-  res.send(fs.readFileSync(file, "utf8"));
-});
-
-app.get("/give-classes", (req, res) => {
-  const file = path.join(rootPath, "give-classes.html");
-  res.setHeader("Content-Type", "text/html");
-  res.send(fs.readFileSync(file, "utf8"));
-});
-
-// POST simulativo
+// POST para formulário
 app.post("/give-classes", (req, res) => {
   console.log("📨 Dados recebidos:", req.body);
-  res.send("Formulário enviado com sucesso!");
+  res.send("Formulário recebido com sucesso!");
 });
 
-// Exporta para Vercel como função serverless
+// Exporta como função serverless para Vercel
 module.exports = (req, res) => app(req, res);
