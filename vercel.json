@@ -4,7 +4,7 @@
     { "src": "api/index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/(styles|scripts|imagens)/(.*)", "dest": "/public/$1/$2" },
+    { "src": "/(styles|scripts|imagens)/(.*)", "dest": "/src/public/$1/$2" },
     { "src": "/", "dest": "/api/index.js" },
     { "src": "/(study|give-classes)", "dest": "/api/index.js" }
   ]
