@@ -141,7 +141,7 @@ Preparação da aplicação para execução em ambiente de produção, incluindo
 
 ---
 
-## 🧠 O que estou aprendendo com este projeto
+## O que estou aprendendo com este projeto
 
 O objetivo deste projeto não é apenas adicionar novas tecnologias.
 
@@ -162,7 +162,7 @@ Entre os principais pontos de evolução estão:
 
 ---
 
-## 🚀 Como executar
+## Como executar
 
 ### Clone o repositório
 
