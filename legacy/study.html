@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/public/main.css">
+    <link rel="stylesheet" href="/public/header.css">
+    <link rel="stylesheet" href="/public/forms.css">
+    <link rel="stylesheet" href="public/page-study.css">
+    <title>Proffy | Sua plataforma de estudos online</title>
+</head>
+<body id="page-study">
+
+    <div id="container">
+       <header class="page-header">
+           <div class="top-bar-container">
+                <a href="/">
+                    <img src="/assets/icons/back.svg" alt="Voltar">
+                </a>
+                <img src="/assets/logo.svg" alt="Proffy">
+           </div>
+
+           <div class="header-content">
+               <strong>Esses são os proffys disponíveis</strong>
+               <form action="" id="search-teachers">
+                    <div class="select-block">
+                        <label for="subject">Matéria</label>
+                        <select name="subject" id="subject">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+                            <option value="1">Artes</option>
+                            <option value="2">Biologia</option>
+                            <option value="3">Ciência</option>
+                            <option value="4">Educação Física</option>
+                            <option value="5">Física</option>
+                            <option value="6">Geografia</option>
+                            <option value="7">História</option>
+                            <option value="8">Matemática</option>
+                            <option value="9">Português</option>
+                            <option value="10">Química</option>
+                        </select>
+                    </div>
+
+                    <div class="select-block">
+                        <label for="weekday">Dia da semana</label>
+                        <select name="weekday" id="weekday">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-feira</option>
+                            <option value="2">Terça-feira</option>
+                            <option value="3">Quarta-feira</option>
+                            <option value="4">Quinta-feira</option>
+                            <option value="5">Sexta-feira</option>
+                            <option value="6">Sábado</option>
+                        </select>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="time">Hora</label>
+                        <input type="time" name="time" id="time" min="0" max="24">
+                    </div>
+                    <button type="submit">Filtrar</button>
+               </form>
+           </div>
+       </header>
+
+       <main>
+            <article class="teacher-item">
+               <header>
+                    <img src="https://media.licdn.com/dms/image/v2/C4D03AQEZWXJLDecnnQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1656634648374?e=1757548800&v=beta&t=W-foLGZyyED0J7pBrHGWJP4FdvzBpvrfpdKzj_X_Ns4" alt="Johnatan Quenes">
+    
+                    <div>
+                        <strong>Johnatan Quenes</strong>
+                        <span>Matemática</span>
+                    </div>
+               </header>
+
+               <p>Entusiasta das melhores tecnologias de matemática avançada.<br><br>Apaixonado por ensinar lógica e mudar a vida das pessoas através dos cálculos</p>
+
+               <footer>
+                    <p>Preço/hora<strong>R$ 20,00</strong></p>
+                    <button type="button">
+                        <img src="/assets/icons/whatsapp.svg" alt="whatsapp">
+                        Entrar em contato
+                    </button>
+               </footer>
+            </article>
+
+            <article class="teacher-item">
+            <header>
+                 <img src="https://avatars0.githubusercontent.com/u/43690080?s=460&u=671312ce6fec36b5d95ffe46c625402c87acec0b&v=4" alt="Arlan Biati">
+ 
+                 <div>
+                     <strong>Arlan Biati</strong>
+                     <span>Português</span>
+                 </div>
+            </header>
+
+            <p>Entusiasta das melhores tecnologias de Português avançados.<br><br>Apaixonado por ensinar Gramatica e mudar a vida das pessoas através dos Gramática</p>
+
+            <footer>
+                 <p>Preço/hora<strong>R$ 20,00</strong></p>
+                 <button type="button">
+                     <img src="/assets/icons/whatsapp.svg" alt="whatsapp">
+                     Entrar em contato
+                 </button>
+            </footer>
+            </article>
+       </main>
+    </div>
+</body>
+</html>

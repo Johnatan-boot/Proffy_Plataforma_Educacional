@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  /* Proffy Original Variables */
+  --color-background: #F0F0F7;
+  --color-primary-lighter: #9871F5;
+  --color-primary-light: #916BEA;
+  --color-primary: #8257E5;
+  --color-primary-dark: #774DD6;
+  --color-primary-darker: #6842c2;
+  --color-secondary: #04D361;
+  --color-secondary-dark: #04BF58;
+  --color-title-in-primary: #FFFFFF;
+  --color-text-in-primary: #D4C2FF;
+  --color-text-title: #32264D;
+  --color-text-complement: #9C98A6;
+  --color-text-base: #6A6180;
+  --color-line-in-white: #E6E6F0;
+  --color-input-background: #F8F8FC;
+  --color-button-text: #FFFFFF;
+  --color-box-base: #FFFFFF;
+  --color-box-footer: #FAFAFC;
+  --color-small-info: #C1BCCC;
+
+  /* Aliases to maintain compatibility with our previously built components */
+  --color-primary-hover: var(--color-primary-light);
+  --color-secondary-hover: var(--color-secondary-dark);
+  --color-surface: var(--color-box-base);
+  --color-text: var(--color-text-title);
+  --color-text-muted: var(--color-text-base);
+  --color-border: var(--color-line-in-white);
+  --color-success: #04d361;
+  --color-warning: #ffb84d;
+  --color-danger: #e33d3d;
+  --color-info: #3d8ee3;
+}
+
+@theme {
+  --color-background: var(--color-background);
+  --color-primary-lighter: var(--color-primary-lighter);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-darker: var(--color-primary-darker);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-dark: var(--color-secondary-dark);
+  --color-title-in-primary: var(--color-title-in-primary);
+  --color-text-in-primary: var(--color-text-in-primary);
+  --color-text-title: var(--color-text-title);
+  --color-text-complement: var(--color-text-complement);
+  --color-text-base: var(--color-text-base);
+  --color-line-in-white: var(--color-line-in-white);
+  --color-input-background: var(--color-input-background);
+  --color-button-text: var(--color-button-text);
+  --color-box-base: var(--color-box-base);
+  --color-box-footer: var(--color-box-footer);
+  --color-small-info: var(--color-small-info);
+
+  /* Aliases */
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary-hover: var(--color-secondary-hover);
+  --color-surface: var(--color-surface);
+  --color-text-main: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-main: var(--color-border);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
+
+  --font-poppins: 'Poppins', sans-serif;
+  --font-archivo: 'Archivo', sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-base);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 1s ease-out; }
+.animate-zoom-in { animation: zoomIn 1s ease forwards; }
+.animate-slide-in-right { animation: slideInRight 1s ease forwards; animation-delay: 0.5s; opacity: 0; }
+.animate-fade-in-delayed { animation: fadeIn 2s ease 1.5s forwards; opacity: 0; }

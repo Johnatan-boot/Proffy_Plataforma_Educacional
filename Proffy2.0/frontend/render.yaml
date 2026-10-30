@@ -1,0 +1,18 @@
+# Deploy do frontend Proffy no Render (Static Site).
+# Alternativas igualmente simples: Vercel, Netlify (mesmos comandos de build).
+
+services:
+  - type: web
+    name: proffy-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+    routes:
+      # SPA: qualquer rota cai no index.html, o React Router cuida do resto
+      - type: rewrite
+        source: /*
+        destination: /index.html

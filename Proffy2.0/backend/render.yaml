@@ -1,0 +1,22 @@
+# Deploy do backend Proffy no Render (Web Service).
+# Depois de conectar o repositório, o Render lê este arquivo automaticamente.
+# As variáveis marcadas com "sync: false" precisam ser preenchidas manualmente
+# no painel do Render (não vão para o git).
+
+services:
+  - type: web
+    name: proffy-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build:production && npm run db:migrate:deploy:mysql
+    startCommand: npm run start:production
+    envVars:
+      - key: DATABASE_PROVIDER
+        value: mysql
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: NODE_VERSION
+        value: 22.22.2
