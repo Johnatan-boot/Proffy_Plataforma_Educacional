@@ -47,11 +47,19 @@ export class StudentRepository {
     });
   }
 
+  // Mesma lógica do professor: remove o usuário (cascade apaga o perfil).
   async delete(id: string) {
-    return prisma.student.delete({
-      where: {
-        id,
-      },
+    const student = await prisma.student.findUnique({
+      where: { id },
+      select: { userId: true },
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return prisma.user.delete({
+      where: { id: student.userId },
     });
   }
 }

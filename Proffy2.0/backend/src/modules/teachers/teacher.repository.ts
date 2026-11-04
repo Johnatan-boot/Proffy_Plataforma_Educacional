@@ -80,11 +80,21 @@ export class TeacherRepository {
     });
   }
 
+  // Exclui o USUÁRIO dono do perfil: o cascade remove o professor e tudo que
+  // depende dele (matérias, disponibilidades, aulas). Antes só o perfil era
+  // apagado e o usuário ficava órfão (o e-mail continuava "em uso").
   async delete(id: string) {
-    return prisma.teacher.delete({
-      where: {
-        id,
-      },
+    const teacher = await prisma.teacher.findUnique({
+      where: { id },
+      select: { userId: true },
+    });
+
+    if (!teacher) {
+      return null;
+    }
+
+    return prisma.user.delete({
+      where: { id: teacher.userId },
     });
   }
 }

@@ -5,17 +5,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
     "test": "node --import tsx --test",
-    "postinstall": "prisma skills sync || exit 0",
     "db:seed": "tsx src/seed.ts",
     "db:generate": "prisma generate --config prisma7.config.ts",
     "db:migrate:deploy": "prisma migrate deploy --config prisma7.config.ts",
     "db:generate:mysql": "prisma generate --config prisma7.config.mysql.ts",
     "db:migrate:deploy:mysql": "prisma migrate deploy --config prisma7.config.mysql.ts",
-    "build:production": "npm run db:generate:mysql && tsc",
-    "start:production": "DATABASE_PROVIDER=mysql node dist/server.js"
+    "build:production": "npm run db:generate && npm run db:generate:mysql && tsc -p tsconfig.build.json",
+    "start:production": "DATABASE_PROVIDER=mysql node dist/server.js",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -26,20 +26,23 @@
     "@prisma/adapter-better-sqlite3": "^7.10.0",
     "@prisma/adapter-mariadb": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "@types/node": "^26.5.1",
     "dotenv": "^18.0.4",
     "fastify": "^5.12.4",
     "prisma": "^7.10.0",
+    "typescript": "^7.0.2",
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@types/node": "^26.5.1",
-    "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
+    "tsx": "^4.23.13"
   },
   "allowScripts": {
     "prisma@7.10.0": true,
     "better-sqlite3@12.11.1": true,
     "@prisma/engines@7.10.0": true,
     "esbuild@0.28.2": true
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

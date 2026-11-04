@@ -1,0 +1,45 @@
+# Blueprint do Render para o Proffy 2.0.
+# O Render só lê este arquivo quando ele está na RAIZ do repositório.
+# Os caminhos abaixo (rootDir) apontam para as subpastas do projeto.
+#
+# Variáveis com "sync: false" são preenchidas no painel do Render
+# (não vão para o git).
+
+services:
+  # ---------- API (Fastify + Prisma + MySQL) ----------
+  - type: web
+    name: proffy-backend
+    runtime: node
+    plan: free
+    rootDir: Proffy2.0/backend
+    # 1) instala  2) gera os clients Prisma + compila TS  3) aplica as migrações no MySQL
+    buildCommand: npm install && npm run build:production && npm run db:migrate:deploy:mysql
+    startCommand: npm run start:production
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.2
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PROVIDER
+        value: mysql
+      - key: DATABASE_URL
+        sync: false # mysql://usuario:senha@host:3306/banco (Clever Cloud)
+      - key: CORS_ORIGIN
+        sync: false # URL pública do frontend, ex.: https://proffy-frontend.onrender.com
+
+  # ---------- Frontend (React + Vite) como site estático ----------
+  - type: web
+    name: proffy-frontend
+    runtime: static
+    rootDir: Proffy2.0/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false # URL pública da API + /api/v1, ex.: https://proffy-backend.onrender.com/api/v1
+    routes:
+      # SPA: qualquer rota cai no index.html (senão F5 em /dashboard dá 404)
+      - type: rewrite
+        source: /*
+        destination: /index.html

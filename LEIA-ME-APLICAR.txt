@@ -1,0 +1,16 @@
+COMO APLICAR (copie por cima do seu repositório, mantendo as pastas):
+
+1) Copie todos os arquivos deste zip para a raiz do repositório
+   Proffy_Plataforma_Educacional/ (substituindo os existentes).
+
+2) APAGUE estes dois arquivos (agora existe um único render.yaml na raiz):
+   Proffy2.0/backend/render.yaml
+   Proffy2.0/frontend/render.yaml
+
+3) Remova do git o que NÃO deve ficar versionado:
+   git rm -r --cached node_modules backend src vercel.json package.json package-lock.json
+   (só os itens que ainda existirem na raiz; os do Proffy2.0/ ficam)
+
+4) git add -A && git commit -m "fix(deploy): build de produção no Render" && git push
+
+5) No Render: Manual Deploy -> Clear build cache & deploy.

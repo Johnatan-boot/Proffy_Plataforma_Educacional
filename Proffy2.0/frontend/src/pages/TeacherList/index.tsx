@@ -5,6 +5,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { subjectService } from "@/features/subjects/services";
 import { teacherService } from "@/features/teachers/services";
+import { Avatar } from "@/components/ui/Avatar";
 import { Teacher } from "@/features/teachers/types";
 import { WEEKDAYS } from "@/features/schedules/types";
 import { AnimatedPage } from "@/components/layout/AnimatedPage";
@@ -125,11 +126,8 @@ export function TeacherList() {
         {teachers.map((teacher) => (
           <article key={teacher.id} className="bg-box-base border border-line-in-white rounded-xl mt-6 overflow-hidden animate-fade-in-up">
             <header className="p-6 md:p-8 flex items-center">
-              <img 
-                src={teacher.avatar} 
-                alt={teacher.name} 
-                className="w-20 h-20 rounded-full object-cover" 
-              />
+              {/* Avatar já trata foto vazia/quebrada com as iniciais (evita src="") */}
+              <Avatar src={teacher.avatar || undefined} name={teacher.name} size="xl" />
               <div className="ml-6">
                 <strong className="font-archivo font-bold text-2xl block text-text-title">{teacher.name}</strong>
                 <span className="text-base block mt-1 text-text-base">{teacher.subject}</span>

@@ -23,19 +23,45 @@ export function buildApp() {
     methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   });
 
- app.setErrorHandler((error, request, reply) => {
-  if (error instanceof AppError) {
-    return reply.code(error.statusCode).send({
-      message: error.message,
+  app.setErrorHandler((error: any, request, reply) => {
+    if (error instanceof AppError) {
+      return reply.code(error.statusCode).send({
+        message: error.message,
+      });
+    }
+
+    // Erros conhecidos do Prisma viram respostas claras (antes tudo virava 500
+    // "Internal server error", sem dar pista do que aconteceu).
+    const prismaMessages: Record<string, [number, string]> = {
+      P2025: [404, "Registro não encontrado."],
+      P2003: [409, "Não é possível concluir: o registro está em uso por outros dados."],
+      P2002: [409, "Já existe um registro com esses dados."],
+    };
+
+    const known = typeof error?.code === "string" ? prismaMessages[error.code] : undefined;
+
+    if (known) {
+      request.log.warn({ code: error.code }, "prisma known error");
+      return reply.code(known[0]).send({ message: known[1], code: error.code });
+    }
+
+    if (/database is locked|SQLITE_BUSY/i.test(String(error?.message))) {
+      request.log.error(error);
+      return reply.code(503).send({
+        message: "Banco de dados ocupado. Feche outros programas que usam o banco (ex.: Prisma Studio) e tente novamente.",
+      });
+    }
+
+    request.log.error(error);
+
+    return reply.code(500).send({
+      message: "Internal server error",
+      // Em desenvolvimento devolve o motivo real para facilitar o diagnóstico.
+      ...(process.env.NODE_ENV !== "production" && {
+        detail: String(error?.message ?? error).slice(0, 300),
+      }),
     });
-  }
-
-  request.log.error(error);
-
-  return reply.code(500).send({
-    message: "Internal server error",
   });
-});
 
   app.get("/api/v1/health", async () => {
     return {

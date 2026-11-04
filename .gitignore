@@ -1,4 +1,31 @@
+# dependências e builds
 node_modules/
+dist/
+build/
+
+# segredos e variáveis de ambiente (use os arquivos *.example como modelo)
 .env
+.env.*
+!.env.example
+!.env.production.example
+
+# bancos locais (contêm dados e hashes de senha)
+*.db
+*.db-journal
+*.sqlite
+
+# clients Prisma gerados (são recriados por `npm run db:generate`)
+src/generated/
+
+# ferramentas de agentes/IDE que não pertencem ao projeto
+.agents/
+.claude/
+.cursor/
+.devin/
+.windsurf/
+skills-lock.json
+
+# sistema
 .DS_Store
-.env.production
+Thumbs.db
+*.log
