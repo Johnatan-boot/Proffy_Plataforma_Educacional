@@ -1,0 +1,43 @@
+Primeira funcionalidade real
+
+Vamos começar pelo cadastro de professor.
+
+Fluxo:
+
+Frontend
+   │
+   │ POST /api/v1/teachers
+   ↓
+Fastify
+   │
+   ↓
+Zod
+   │
+   ↓
+Teacher Service
+   │
+   ↓
+MySQL
+   │
+   ↓
+Professor criado
+
+Dados iniciais:
+
+Professor
+├── id
+├── nome
+├── email
+├── telefone
+├── bio
+├── avatar
+├── created_at
+└── updated_at
+
+Depois adicionamos:
+
+Professor
+   │
+   ├── disciplinas
+   │
+   └── horários disponíveis

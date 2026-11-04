@@ -1,0 +1,97 @@
+Proffy2.0/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── routes/
+│   │   │   └── providers/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Button/
+│   │   │   ├── Input/
+│   │   │   ├── Card/
+│   │   │   ├── Header/
+│   │   │   └── Layout/
+│   │   │
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   ├── teachers/
+│   │   │   ├── students/
+│   │   │   └── schedules/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Home/
+│   │   │   ├── Login/
+│   │   │   ├── Register/
+│   │   │   ├── Teachers/
+│   │   │   ├── TeacherDetails/
+│   │   │   └── MySchedules/
+│   │   │
+│   │   ├── services/
+│   │   │   └── api/
+│   │   │
+│   │   ├── hooks/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   └── styles/
+│   │
+│   ├── public/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
+│
+├── backend/
+│   ├── src/
+│   │   ├── app.ts
+│   │   ├── server.ts
+│   │   │
+│   │   ├── config/
+│   │   │
+│   │   ├── plugins/
+│   │   │
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   │   ├── auth.controller.ts
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   ├── auth.routes.ts
+│   │   │   │   └── auth.schemas.ts
+│   │   │   │
+│   │   │   ├── users/
+│   │   │   ├── teachers/
+│   │   │   ├── students/
+│   │   │   └── schedules/
+│   │   │
+│   │   ├── database/
+│   │   │   ├── connection.ts
+│   │   │   ├── migrations/
+│   │   │   └── seed/
+│   │   │
+│   │   ├── shared/
+│   │   │   ├── errors/
+│   │   │   ├── types/
+│   │   │   └── utils/
+│   │   │
+│   │   └── tests/
+│   │
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── database/
+│   └── README.md
+│
+├── docs/
+│   ├── architecture.md
+│   ├── evolution.md
+│   └── decisions/
+│       ├── 001-typescript.md
+│       ├── 002-fastify.md
+│       └── 003-mysql.md
+│
+├── docker/
+│   └── mysql/
+│
+├── docker-compose.yml
+├── .env.example
+├── .gitignore
+├── README.md
+└── package.json

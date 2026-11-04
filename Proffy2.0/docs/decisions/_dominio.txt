@@ -1,0 +1,18 @@
+Usuários
+   │
+   ├── Professor
+   │
+   └── Aluno
+         │
+         └── Agendamento
+
+Professor
+   │
+   ├── Matéria
+   ├── Horários
+   └── Disponibilidade
+
+Aluno
+   │
+   ├── Busca
+   └── Agendamento

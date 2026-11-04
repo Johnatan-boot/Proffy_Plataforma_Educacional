@@ -1,0 +1,25 @@
+01. Instalar Prisma
+        ↓
+02. Configurar SQLite
+        ↓
+03. Criar schema.prisma
+        ↓
+04. Modelar User
+        ↓
+05. Modelar Teacher
+        ↓
+06. Modelar Student
+        ↓
+07. Modelar Subject
+        ↓
+08. Modelar TeacherSubject
+        ↓
+09. Modelar Availability
+        ↓
+10. Modelar Schedule
+        ↓
+11. Criar primeira migration
+        ↓
+12. Executar migration
+        ↓
+13. Testar banco local
